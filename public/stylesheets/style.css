@@ -3,6 +3,22 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+input {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
 a {
   color: #00B7FF;
+}
+
+code {
+  background-color: #eee;
+  margin: 1em 1em;
+  padding: 1em auto;
+  display: block;
+  overflow: auto;
+}
+
+footer {
+  margin-top: 5em;
 }

@@ -20,10 +20,7 @@ block content
       li
         = 'https://github.com/abtris/sinopia-htaccess-gpg-email/actions/workflows/node.js.yml'
 
-  <form method="post" action="/badge">
-    <input type="text" name="gh_url" size="100" value='#{url}' />
-    <button type="submit">Submit</button>
-  </form>
+  include form.pug
 
   p Paste this into your markdown readme
     ul
