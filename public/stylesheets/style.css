@@ -3,8 +3,23 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+form {
+  width: 50%
+}
+
+label {
+  width: 20%;
+  float: left;
+  margin-top: 8px;
+}
+
 input {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin-top: 8px;
+}
+
+button {
+  margin: 8px 20%;
 }
 
 a {

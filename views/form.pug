@@ -1,5 +1,12 @@
 <form method="post" action="/">
+<fieldset>
+  <legend>Generator</legend>
   label(for="gh_url") Github Action Workflow file URL:&nbsp;
-  <input type="text" name="gh_url" size="100" value='#{url}' />
+  <input type="text" name="gh_url" size="100" value='#{url}' required autofocus />
+  <br/>
+  label(for="title") Badge label:&nbsp;
+  <input type="text" name="title" size="20" value='#{label}' />
+  <br/>
   <button type="submit">Submit</button>
+</fieldset>
 </form>
