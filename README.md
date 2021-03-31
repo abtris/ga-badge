@@ -1,1 +1,3 @@
-# ga-badge
+# Github Actions Badge Generator
+
+- WIP
