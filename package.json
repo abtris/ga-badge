@@ -5,7 +5,8 @@
   "description": "Simple app to generate Github Action badges for your URL",
   "repository": "https://github.com/abtris/ga-badge",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": ""
   },
   "dependencies": {
     "cookie-parser": "~1.4.5",
