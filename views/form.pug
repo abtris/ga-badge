@@ -5,23 +5,16 @@
     <input class="u-full-width" type="text" name="title" value='#{label}' />
   </div>
   <div class="six columns">
-    <label for="format">Format</label>
-    <div class="three columns">
-    <label for="format">
-      <input type="radio" name="format" value='markdown' checked="checked" />
-      <span class="label-body">markdown</span>
-    </label>
-    </div>
-    <div class="three columns">
-    <label for="format">
-      <input type="radio" name="format" value='plain' disabled />
-      <span class="label-body">plain text</span>
-    </label>
-    </div>
+    <label for="branch">Branch</label>
+    <input class="u-full-width" type="text" name="branch" value='#{branch}' />
+    <em>Note: value default is your default branch - doesn't matter if is named main or trunk or master</em>
   </div>
   </div>
   label(for="gh_url") Github Action Workflow file URL
   <input class="u-full-width" type="text" name="gh_url" value='#{url}' required autofocus />
+  <em>Note: target link is on all Github actions in repository for getting overview</em>
+  </div>
+  <div class="row">
   <input class="button-primary" type="submit" value="Submit" />
 </div>
 </form>
