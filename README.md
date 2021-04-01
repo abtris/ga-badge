@@ -1,7 +1,10 @@
 [![Build Status](https://github.com/abtris/ga-badge/actions/workflows/node.js.yml/badge.svg)](https://github.com/abtris/ga-badge/actions)
-# Github Actions Badge Generator
+# Badge Generator
 
 - naive implementation
-- no features
+- only for Github Actions
 - no support
-- PR welcome
+
+## App
+
+![](screenshot.png)
