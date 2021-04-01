@@ -2,33 +2,31 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
 
-  p
-    ul
-      li
-        a(href="https://docs.github.com/en/actions/managing-workflow-runs/adding-a-workflow-status-badge") Github documentation
+  <div class="row">
 
-  p You reference the workflow by the name of your workflow file.
-    ul
-      li
-        = 'https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.svg'
-
-
-  p Paste your github action yaml file and you get badge link for README.md file
-    ul
-      li
-        = 'https://github.com/abtris/sinopia-htaccess-gpg-email/actions/workflows/node.js.yml'
-
+  <h4>Generator</h4>
   include form.pug
 
-  p Paste this into your markdown readme
-    ul
-        li <code>#{snippet}</code>
+  </div>
+
+  <div class="row">
+    <h4>Paste this into your markdown readme</h4>
+      <pre><code>#{snippet}</code></pre>
+  </div>
 
   block scripts
     script(src="https://cdn.jsdelivr.net/npm/marked/marked.min.js")
-  p Preview
+  h4 Preview
     <div id="content"></div>
   script.
       document.getElementById('content').innerHTML = marked('#{snippet}');
+
+
+  h4 Documentation
+  div
+    ul
+      li
+        a(href="https://docs.github.com/en/actions/managing-workflow-runs/adding-a-workflow-status-badge") Github - Adding a workflow status badge
+
+

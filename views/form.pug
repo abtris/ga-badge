@@ -1,12 +1,27 @@
 <form method="post" action="/">
-<fieldset>
-  <legend>Generator</legend>
-  label(for="gh_url") Github Action Workflow file URL:&nbsp;
-  <input type="text" name="gh_url" size="100" value='#{url}' required autofocus />
-  <br/>
-  label(for="title") Badge label:&nbsp;
-  <input type="text" name="title" size="20" value='#{label}' />
-  <br/>
-  <button type="submit">Submit</button>
-</fieldset>
+ <div class="row">
+  <div class="six columns">
+    label(for="title") Badge label
+    <input class="u-full-width" type="text" name="title" value='#{label}' />
+  </div>
+  <div class="six columns">
+    <label for="format">Format</label>
+    <div class="three columns">
+    <label for="format">
+      <input type="radio" name="format" value='markdown' checked="checked" />
+      <span class="label-body">markdown</span>
+    </label>
+    </div>
+    <div class="three columns">
+    <label for="format">
+      <input type="radio" name="format" value='plain' disabled />
+      <span class="label-body">plain text</span>
+    </label>
+    </div>
+  </div>
+  </div>
+  label(for="gh_url") Github Action Workflow file URL
+  <input class="u-full-width" type="text" name="gh_url" value='#{url}' required autofocus />
+  <input class="button-primary" type="submit" value="Submit" />
+</div>
 </form>
