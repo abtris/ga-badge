@@ -2,7 +2,26 @@ doctype html
 html
   head
     title= title
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="description" content="Github Actions Badge Generator">
+    <meta name="author" content="Ladislav Prskavec - https://github.com/abtris">
+    link(href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css")
+    link(rel='stylesheet', href='/stylesheets/normalize.css')
+    link(rel='stylesheet', href='/stylesheets/skeleton.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='icon', type='image/png' href='/images/favicon-32x32.png')
+
   body
-    block content
-    include foot.pug
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          block content
+        </div>
+      </div>
+      <div class="row">
+        include foot.pug
+      </div>
+    </div>
+
+
