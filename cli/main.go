@@ -11,7 +11,7 @@ import (
 )
 
 // generateBadge
-func generateBadge(githubActionURL string) (string, error) {
+func generateBadge(githubActionURL string, branch string, label string) (string, error) {
 	u, err := url.Parse(githubActionURL)
 	if err != nil {
 		log.Fatal(err)
@@ -24,9 +24,13 @@ func generateBadge(githubActionURL string) (string, error) {
 	if actionsString != "actions" || workflowsString != "workflows" {
 		return "", fmt.Errorf("invalid URL on input")
 	}
-  workflowFileName := parts[4]
-	title := "Build Status"
-	return fmt.Sprintf("[![%s](https://github.com/%s/%s/actions/workflows/%s/badge.svg)](https://github.com/%s/%s/actions)", title, repoOwner, repoName, workflowFileName, repoOwner, repoName), nil
+  workflowFileName := parts[5]
+	defaultBranch := ""
+	if branch != "master" {
+		defaultBranch = fmt.Sprintf("?branch=%s", branch)
+	}
+	title := label
+	return fmt.Sprintf("[![%s](https://github.com/%s/%s/actions/workflows/%s/badge.svg%s)](https://github.com/%s/%s/actions)", title, repoOwner, repoName, workflowFileName, defaultBranch, repoOwner, repoName), nil
 }
 
 func main()  {
@@ -34,15 +38,27 @@ func main()  {
 	app.EnableBashCompletion = true
 	app.Commands = []*cli.Command{
 		{
-			Name:    "badge",
-			Aliases: []string{"b"},
-			Usage:   "create badge",
+			Name:    "create",
+			Aliases: []string{"c"},
+			Usage:   "Create github action badge from URL",
+ 			Flags: []cli.Flag{
+				&cli.StringFlag{Name: "url", Aliases: []string{"u"}},
+        &cli.StringFlag{Name: "branch", Aliases: []string{"b"}, Value: "master"},
+        &cli.StringFlag{Name: "label", Aliases: []string{"l"}, Value: "Build Status"},
+      },
 			Action: func(c *cli.Context) error {
-				badge, err := generateBadge(c.Args().First())
+				url := c.String("url");
+				branch := c.String("branch");
+				label := c.String("label");
+				if c.NArg() > 0 {
+        	url = c.Args().Get(0)
+      	}
+				badge, err := generateBadge(url, branch, label)
 				if err != nil {
 					return err
 				}
 				fmt.Println(badge)
+
 				return nil
 			},
 		},
