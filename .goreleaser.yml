@@ -45,10 +45,6 @@ brews:
       name: goreleaserbot
       email: goreleaser@prskavec.net
 
-    # Folder inside the repository to put the formula.
-    # Default is the root folder.
-    folder: Formula
-
     # Default is empty.
     license: "MIT"
 
