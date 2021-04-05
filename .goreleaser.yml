@@ -34,18 +34,16 @@ changelog:
       - '^test:'
 brews:
   -
-    # GitHub/GitLab repository to push the formula to
-    # Gitea is not supported yet, but the support coming
+    # GitHub homebrew repository created by `brew tap-new` command  first!
     tap:
       owner: abtris
       name: homebrew-tap
     # Git author used to commit to the repository.
-    # Defaults are shown.
     commit_author:
       name: Ladislav Prskavec
       email: ladislav@prskavec.net
 
-    # Default is empty.
+    # homebrew mandatory fields (not mandatory for goreleaser)
     license: "MIT"
     homepage: "https://github.com/abtris/ga-badge"
     description: "Github Action Badge Generator"

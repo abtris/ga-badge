@@ -26,4 +26,5 @@ jobs:
           version: latest
           args: release --rm-dist
         env:
+          # This token have to have rights for homebrew_tap repository - create as personal token
           GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
