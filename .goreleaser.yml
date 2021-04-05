@@ -35,6 +35,9 @@ changelog:
 brews:
   -
     # GitHub homebrew repository created by `brew tap-new` command  first!
+    # brew tap-new will create git repo and that can be issue and try commit and
+    # you use `useconfigonly = true` settings in `~/.gitconfig`
+    # use brew tap-new --no-git to prevent issue and after you set owner you init and push manually.
     tap:
       owner: abtris
       name: homebrew-tap
