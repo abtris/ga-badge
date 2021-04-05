@@ -47,3 +47,5 @@ brews:
 
     # Default is empty.
     license: "MIT"
+    homepage: "https://github.com/abtris/ga-badge"
+    description: "Github Action Badge Generator"
