@@ -11,6 +11,14 @@
 
 ## CLI
 
+### Install
+
+```
+brew install abtris/tap/gab
+```
+
+### Usage
+
 Help with simple one command `create`
 
 ```bash
