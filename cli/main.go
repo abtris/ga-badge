@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	"errors"
 	"fmt"
 	"io/fs"
 	"io/ioutil"
@@ -13,19 +14,24 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
+var errWrongURL = errors.New("wrong URL, can't generate badge")
 // generateBadge
 func generateBadge(githubActionURL string, branch string, label string) (string, error) {
 	u, err := url.Parse(githubActionURL)
 	if err != nil {
 		log.Fatal(err)
+		return "", errWrongURL
 	}
 	parts := strings.Split(u.Path, "/")
+	if len(parts) <= 5 {
+		return "", errWrongURL
+	}
 	repoOwner := parts[1]
   repoName := parts[2]
   actionsString := parts[3]
 	workflowsString := parts[4]
 	if actionsString != "actions" || workflowsString != "workflows" {
-		return "", fmt.Errorf("invalid URL on input")
+		return "", errWrongURL
 	}
   workflowFileName := parts[5]
 	defaultBranch := ""
