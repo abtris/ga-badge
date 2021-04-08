@@ -61,8 +61,8 @@ func createFile(content []byte, filename string) error {
 	return nil
 }
 
-func initWorkflow(lang string, templates []fs.DirEntry) (string, error) {
-	err := ensureDir(".github/workflows")
+func initWorkflow(lang string, actionsDir string, templates []fs.DirEntry) (string, error) {
+	err := ensureDir(actionsDir)
 	if err != nil {
 		return "", err
 	}
@@ -120,7 +120,7 @@ func main()  {
       },
 			Action: func(c *cli.Context) error {
 				lang := c.String("lang");
-				fileName, err := initWorkflow(lang, templates)
+				fileName, err := initWorkflow(lang, ".github/workflows/", templates)
 				if err != nil {
 					return err
 				}

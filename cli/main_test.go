@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io/fs"
 	"testing"
 )
 
@@ -60,5 +61,26 @@ func TestGenerateBadge(t *testing.T) {
 }
 
 func TestInitWorkflow(t *testing.T) {
-
+	tests := []struct {
+			name 						string
+			lang   					string
+			outputError     error
+			outputFileName  string
+	}{
+			{name:"Simple Node template", lang: "node", outputError: nil, outputFileName: "node.yaml"},
+			{name:"Simple Node.js template", lang: "node.js", outputError: nil, outputFileName: "node.js.yaml"},
+			{name:"Simple Go template", lang: "go", outputError: nil, outputFileName: "go.yaml"},
+	}
+	templates, _ := fs.ReadDir(files, "templates")
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			actualFileName, err := initWorkflow(test.lang, "/tmp/", templates)
+			if err != nil {
+				t.Errorf("Error %v", err)
+			}
+			if actualFileName != test.outputFileName {
+				t.Errorf("Expected %v and real %v)", test.outputFileName, actualFileName)
+			}
+		})
+	}
 }
