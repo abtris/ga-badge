@@ -60,3 +60,17 @@ OPTIONS:
    --branch value, -b value  (default: "master")
    --label value, -l value   (default: "Build Status")
 ```
+
+second command make fast init template for my used templates stored in `cli/templates`.
+
+```
+$ gab help init
+NAME:
+   main init - Create github workflow file
+
+USAGE:
+   main init [command options] [arguments...]
+
+OPTIONS:
+   --lang value, -l value  (default: "node.js")
+```
