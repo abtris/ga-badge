@@ -43,12 +43,11 @@ func generateBadge(githubActionURL string, branch string, label string) (string,
 }
 
 func ensureDir(dirName string) error {
-    err := os.Mkdir(dirName, os.ModeDir)
-    if err == nil || os.IsExist(err) {
-        return nil
-    } else {
-        return err
-    }
+	if _, err := os.Stat(dirName); os.IsNotExist(err) {
+    err := os.MkdirAll(dirName, os.ModePerm)
+		return err
+	}
+	return nil
 }
 
 func createFile(content []byte, filename string) error {

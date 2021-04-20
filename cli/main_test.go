@@ -2,6 +2,7 @@ package main
 
 import (
 	"io/fs"
+	"os"
 	"testing"
 )
 
@@ -74,7 +75,8 @@ func TestInitWorkflow(t *testing.T) {
 	templates, _ := fs.ReadDir(files, "templates")
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			actualFileName, err := initWorkflow(test.lang, "/tmp/", templates)
+			actualFileName, err := initWorkflow(test.lang, "/tmp/.github/workflows", templates)
+			defer os.RemoveAll("/tmp/.github/workflows")
 			if err != nil {
 				t.Errorf("Error %v", err)
 			}
