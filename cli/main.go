@@ -25,7 +25,7 @@ var (
 )
 
 func printVersion() {
-	fmt.Printf("gab version: %s-%s", Version, CommitHash)
+	fmt.Printf("gab version: %s-%s\n", Version, CommitHash)
 }
 
 var errWrongURL = errors.New("wrong URL, can't generate badge")
