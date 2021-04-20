@@ -8,6 +8,11 @@ builds:
     main: ./cli/main.go
     env:
       - CGO_ENABLED=0
+    ldflags:
+      - -s -w
+      - -X main.BuildDate={{.Date}}
+      - -X main.CommitHash={{ .ShortCommit }}
+      - -X main.Version={{ .Version }}
     goos:
       - linux
       - windows
