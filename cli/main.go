@@ -14,6 +14,20 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
+// All of this added by goreleaser using ldflags
+var (
+	// Short Git Commit Hash
+	CommitHash string
+	// Version vx.x.x
+	Version string
+	// Date of build
+	BuildDate string
+)
+
+func printVersion() {
+	log.Printf("Current build version: %s-%s", Version, CommitHash)
+}
+
 var errWrongURL = errors.New("wrong URL, can't generate badge")
 // generateBadge
 func generateBadge(githubActionURL string, branch string, label string) (string, error) {
@@ -125,6 +139,14 @@ func main()  {
 				}
 				fmt.Printf("Done. File .github/workflows/%s was created.\n", fileName)
 
+				return nil
+			},
+		},{
+			Name:    "version",
+			Aliases: []string{"v"},
+			Usage:   "Print version",
+			Action: func(c *cli.Context) error {
+				printVersion()
 				return nil
 			},
 		}}
