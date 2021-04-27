@@ -1,9 +1,9 @@
 [![Build Status](https://github.com/abtris/ga-badge/actions/workflows/node.js.yml/badge.svg)](https://github.com/abtris/ga-badge/actions)
 # Badge Generator
 
-  - naive implementation
-  - only for GitHub Actions
-  - no support
+- naive implementation
+- only for GitHub Actions
+- no support
 
 ## App
 
@@ -13,7 +13,7 @@
 
 ### Install
 
-```
+```shell
 brew install abtris/tap/gab
 ```
 
@@ -21,7 +21,7 @@ brew install abtris/tap/gab
 
 Help with simple one command `create`
 
-```bash
+```shell
 $ gab
 
 NAME:
@@ -40,14 +40,14 @@ GLOBAL OPTIONS:
 
 and you can use command `create` with URL
 
-```bash
+```shell
 $ gab create https://github.com/abtris/ga-badge/actions/workflows/node.js.yml/badge.svg
 [![Build Status](https://github.com/abtris/ga-badge/actions/workflows/node.js.yml/badge.svg)](https://github.com/abtris/ga-badge/actions)
 ```
 
 or specify more options
 
-```
+```shell
 $ gab help create
 NAME:
    gab create - Create github action badge from URL
@@ -63,7 +63,7 @@ OPTIONS:
 
 second command make fast init template for my used templates stored in `cli/templates`.
 
-```
+```shell
 $ gab help init
 NAME:
    main init - Create github workflow file
