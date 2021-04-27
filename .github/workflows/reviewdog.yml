@@ -80,12 +80,12 @@ jobs:
   detect-secrets:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: detect-secrets
-      uses: reviewdog/action-detect-secrets@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        reporter: github-pr-review
+      - uses: actions/checkout@v2
+      - name: detect-secrets
+        uses: reviewdog/action-detect-secrets@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
 
   remark-lint:
     name: runner / remark-lint
