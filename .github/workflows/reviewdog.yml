@@ -41,6 +41,7 @@ jobs:
           fail_on_error: true
 
   misspell:
+    if: github.event_name == 'pull_request'
     name: runner / misspell
     runs-on: ubuntu-latest
     steps:
@@ -52,6 +53,7 @@ jobs:
           reporter: github-pr-review
 
   languagetool:
+    if: github.event_name == 'pull_request'
     name: runner / languagetool
     runs-on: ubuntu-latest
     steps:
@@ -63,9 +65,6 @@ jobs:
           level: info
           patterns: |
             **/*.md
-      - uses: reviewdog/action-suggester@v1
-        with:
-          tool_name: languagetool
 
   shellcheck:
     if: github.event_name == 'pull_request'
@@ -81,6 +80,7 @@ jobs:
         with:
           tool_name: shellcheck
   alex:
+    if: github.event_name == 'pull_request'
     name: runner / alex
     runs-on: ubuntu-latest
     steps:
@@ -102,6 +102,7 @@ jobs:
           reporter: github-pr-review
 
   remark-lint:
+    if: github.event_name == 'pull_request'
     name: runner / remark-lint
     runs-on: ubuntu-latest
     steps:
@@ -113,6 +114,7 @@ jobs:
           reporter: github-pr-review
 
   eslint:
+    if: github.event_name == 'pull_request'
     name: runner / eslint
     runs-on: ubuntu-latest
     steps:
@@ -124,6 +126,7 @@ jobs:
           reporter: github-pr-review
 
   yamllint:
+    if: github.event_name == 'pull_request'
     name: runner / yamllint
     runs-on: ubuntu-latest
     steps:
