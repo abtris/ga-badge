@@ -63,6 +63,9 @@ jobs:
           level: info
           patterns: |
             **/*.md
+      - uses: reviewdog/action-suggester@v1
+        with:
+          tool_name: languagetool
 
   shellcheck:
     if: github.event_name == 'pull_request'
