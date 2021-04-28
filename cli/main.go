@@ -29,6 +29,7 @@ func printVersion() {
 }
 
 var errWrongURL = errors.New("wrong URL, can't generate badge")
+
 // generateBadge
 func generateBadge(githubActionURL string, branch string, label string) (string, error) {
 	u, err := url.Parse(githubActionURL)
@@ -41,13 +42,13 @@ func generateBadge(githubActionURL string, branch string, label string) (string,
 		return "", errWrongURL
 	}
 	repoOwner := parts[1]
-  repoName := parts[2]
-  actionsString := parts[3]
+	repoName := parts[2]
+	actionsString := parts[3]
 	workflowsString := parts[4]
 	if actionsString != "actions" || workflowsString != "workflows" {
 		return "", errWrongURL
 	}
-  workflowFileName := parts[5]
+	workflowFileName := parts[5]
 	defaultBranch := ""
 	if branch != "master" {
 		defaultBranch = fmt.Sprintf("?branch=%s", branch)
@@ -58,17 +59,17 @@ func generateBadge(githubActionURL string, branch string, label string) (string,
 
 func ensureDir(dirName string) error {
 	if _, err := os.Stat(dirName); os.IsNotExist(err) {
-    err := os.MkdirAll(dirName, os.ModePerm)
+		err := os.MkdirAll(dirName, os.ModePerm)
 		return err
 	}
 	return nil
 }
 
 func createFile(content []byte, filename string) error {
-	if _, err := os.Stat(".github/workflows/"+ filename); os.IsNotExist(err) {
-  	err := ioutil.WriteFile(".github/workflows/"+ filename, content, os.ModePerm)
+	if _, err := os.Stat(".github/workflows/" + filename); os.IsNotExist(err) {
+		err := ioutil.WriteFile(".github/workflows/"+filename, content, os.ModePerm)
 		if err != nil {
-				return err
+			return err
 		}
 	}
 	return nil
@@ -85,7 +86,7 @@ func initWorkflow(lang string, actionsDir string, templates []fs.DirEntry) (stri
 		// "go.yaml"
 		data, _ := files.ReadFile("templates/go.yaml")
 		createFile(data, fileName)
-	case "node","node.js":
+	case "node", "node.js":
 		data, _ := files.ReadFile("templates/node.js.yaml")
 		createFile(data, fileName)
 	}
@@ -95,7 +96,7 @@ func initWorkflow(lang string, actionsDir string, templates []fs.DirEntry) (stri
 //go:embed templates/*.yaml
 var files embed.FS
 
-func main()  {
+func main() {
 	templates, _ := fs.ReadDir(files, "templates")
 	app := cli.NewApp()
 	app.EnableBashCompletion = true
@@ -104,18 +105,18 @@ func main()  {
 			Name:    "create",
 			Aliases: []string{"c"},
 			Usage:   "Create github action badge from URL",
- 			Flags: []cli.Flag{
+			Flags: []cli.Flag{
 				&cli.StringFlag{Name: "url", Aliases: []string{"u"}},
-        &cli.StringFlag{Name: "branch", Aliases: []string{"b"}, Value: "master"},
-        &cli.StringFlag{Name: "label", Aliases: []string{"l"}, Value: "Build Status"},
-      },
+				&cli.StringFlag{Name: "branch", Aliases: []string{"b"}, Value: "master"},
+				&cli.StringFlag{Name: "label", Aliases: []string{"l"}, Value: "Build Status"},
+			},
 			Action: func(c *cli.Context) error {
-				url := c.String("url");
-				branch := c.String("branch");
-				label := c.String("label");
+				url := c.String("url")
+				branch := c.String("branch")
+				label := c.String("label")
 				if c.NArg() > 0 {
-        	url = c.Args().Get(0)
-      	}
+					url = c.Args().Get(0)
+				}
 				badge, err := generateBadge(url, branch, label)
 				if err != nil {
 					return err
@@ -124,15 +125,15 @@ func main()  {
 
 				return nil
 			},
-		},{
+		}, {
 			Name:    "init",
 			Aliases: []string{"i"},
 			Usage:   "Create github workflow file",
- 			Flags: []cli.Flag{
-        &cli.StringFlag{Name: "lang", Aliases: []string{"l"}, Value: "node.js", Required: true},
-      },
+			Flags: []cli.Flag{
+				&cli.StringFlag{Name: "lang", Aliases: []string{"l"}, Value: "node.js", Required: true},
+			},
 			Action: func(c *cli.Context) error {
-				lang := c.String("lang");
+				lang := c.String("lang")
 				fileName, err := initWorkflow(lang, ".github/workflows/", templates)
 				if err != nil {
 					return err
@@ -141,7 +142,7 @@ func main()  {
 
 				return nil
 			},
-		},{
+		}, {
 			Name:    "version",
 			Aliases: []string{"v"},
 			Usage:   "Print version",
@@ -151,9 +152,8 @@ func main()  {
 			},
 		}}
 
-  err := app.Run(os.Args)
-  if err != nil {
-    log.Fatal(err)
-  }
+	err := app.Run(os.Args)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
-
