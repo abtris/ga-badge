@@ -2,7 +2,7 @@
 # Badge Generator
 
 - naive implementation
-- only for GitHub Actions
+- only for Github Actions
 - no support
 
 ## App

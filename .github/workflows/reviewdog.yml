@@ -2,6 +2,15 @@ name: reviewdog
 on: [ pull_request ]
 
 jobs:
+  gofmt:
+    name: runner / suggester / gofmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: gofmt -w -s .
+      - uses: reviewdog/action-suggester@v1
+        with:
+          tool_name: gofmt
   golangci-lint:
     if: github.event_name == 'pull_request'
     name: runner / golangci-lint
@@ -32,6 +41,7 @@ jobs:
           fail_on_error: true
 
   misspell:
+    if: github.event_name == 'pull_request'
     name: runner / misspell
     runs-on: ubuntu-latest
     steps:
@@ -43,6 +53,7 @@ jobs:
           reporter: github-pr-review
 
   languagetool:
+    if: github.event_name == 'pull_request'
     name: runner / languagetool
     runs-on: ubuntu-latest
     steps:
@@ -65,8 +76,11 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
-
+      - uses: reviewdog/action-suggester@v1
+        with:
+          tool_name: shellcheck
   alex:
+    if: github.event_name == 'pull_request'
     name: runner / alex
     runs-on: ubuntu-latest
     steps:
@@ -88,6 +102,7 @@ jobs:
           reporter: github-pr-review
 
   remark-lint:
+    if: github.event_name == 'pull_request'
     name: runner / remark-lint
     runs-on: ubuntu-latest
     steps:
@@ -99,6 +114,7 @@ jobs:
           reporter: github-pr-review
 
   eslint:
+    if: github.event_name == 'pull_request'
     name: runner / eslint
     runs-on: ubuntu-latest
     steps:
@@ -110,6 +126,7 @@ jobs:
           reporter: github-pr-review
 
   yamllint:
+    if: github.event_name == 'pull_request'
     name: runner / yamllint
     runs-on: ubuntu-latest
     steps:
