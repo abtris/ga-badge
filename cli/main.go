@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io/fs"
-	"io/ioutil"
+
 	"log"
 	"net/url"
 	"os"
@@ -67,7 +67,7 @@ func ensureDir(dirName string) error {
 
 func createFile(content []byte, filename string) error {
 	if _, err := os.Stat(".github/workflows/" + filename); os.IsNotExist(err) {
-		err := ioutil.WriteFile(".github/workflows/"+filename, content, os.ModePerm)
+		err := os.WriteFile(".github/workflows/"+filename, content, os.ModePerm)
 		if err != nil {
 			return err
 		}
