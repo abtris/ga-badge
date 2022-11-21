@@ -15,7 +15,7 @@
     "debug": "4.3.4",
     "express": "4.18.2",
     "honeycomb-beeline": "2.7.1",
-    "http-errors": "1.8.1",
+    "http-errors": "2.0.0",
     "morgan": "1.10.0",
     "pug": "3.0.2"
   },
