@@ -8,7 +8,7 @@ import (
 )
 
 func Build(ctx context.Context, client *dagger.Client, os, arch string) *dagger.Directory {
-	directory := client.Host().Workdir()
+	directory := client.Host().Directory(".")
 	return daggerutils.GoBuild(daggerutils.GoBuildInput{
 		Client:    client,
 		Os:        os,
