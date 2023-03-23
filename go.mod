@@ -3,13 +3,14 @@ module github.com/abtris/ga-badge
 go 1.19
 
 require (
-	dagger.io/dagger v0.4.0
+	dagger.io/dagger v0.5.2
 	github.com/urfave/cli/v2 v2.23.5
 )
 
 require (
 	github.com/Khan/genqlient v0.5.0 // indirect
 	github.com/Microsoft/go-winio v0.5.2 // indirect
+	github.com/adrg/xdg v0.4.0 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/containerd/console v1.0.3 // indirect
