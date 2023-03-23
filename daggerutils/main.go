@@ -32,9 +32,7 @@ func GoBuild(cfg GoBuildInput) *dagger.Directory {
 		WithEnvVariable("GOOS", cfg.Os)
 
 	// Execute Command
-	builder = builder.Exec(dagger.ContainerExecOpts{
-		Args: []string{"go", "build", "-o", "ga-badge"},
-	})
+	builder = builder.WithExec([]string{"go", "build", "-o", "ga-badge"})
 
 	return builder.Directory(workdir)
 }
