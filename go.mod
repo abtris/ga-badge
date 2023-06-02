@@ -3,11 +3,12 @@ module github.com/abtris/ga-badge
 go 1.20
 
 require (
-	dagger.io/dagger v0.7.0
+	dagger.io/dagger v0.7.1
 	github.com/urfave/cli/v2 v2.25.5
 )
 
 require (
+	github.com/99designs/gqlgen v0.17.2 // indirect
 	github.com/Khan/genqlient v0.5.0 // indirect
 	github.com/adrg/xdg v0.4.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
