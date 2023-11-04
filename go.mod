@@ -3,7 +3,7 @@ module github.com/abtris/ga-badge
 go 1.20
 
 require (
-	dagger.io/dagger v0.9.2
+	dagger.io/dagger v0.9.3
 	github.com/urfave/cli/v2 v2.25.7
 )
 
@@ -17,6 +17,6 @@ require (
 	github.com/vektah/gqlparser/v2 v2.5.6 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	golang.org/x/exp v0.0.0-20231006140011-7918f672742d // indirect
-	golang.org/x/sync v0.3.0 // indirect
+	golang.org/x/sync v0.4.0 // indirect
 	golang.org/x/sys v0.13.0 // indirect
 )
