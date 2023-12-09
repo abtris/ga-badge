@@ -1,9 +1,11 @@
 module github.com/abtris/ga-badge
 
-go 1.20
+go 1.21
+
+toolchain go1.21.5
 
 require (
-	dagger.io/dagger v0.9.3
+	dagger.io/dagger v0.9.4
 	github.com/urfave/cli/v2 v2.26.0
 )
 
