@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.22.2
 
 require (
-	dagger.io/dagger v0.11.1
+	dagger.io/dagger v0.11.2
 	github.com/urfave/cli/v2 v2.27.1
 )
 
