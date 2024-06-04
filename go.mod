@@ -2,7 +2,7 @@ module github.com/abtris/ga-badge
 
 go 1.21
 
-toolchain go1.22.3
+toolchain go1.22.4
 
 require (
 	dagger.io/dagger v0.11.6
