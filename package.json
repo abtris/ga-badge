@@ -11,7 +11,7 @@
     "lint-md": "remark ."
   },
   "dependencies": {
-    "cookie-parser": "1.4.6",
+    "cookie-parser": "1.4.7",
     "debug": "4.3.5",
     "express": "4.20.0",
     "honeycomb-beeline": "2.7.1",
