@@ -11,10 +11,10 @@
     "lint-md": "remark ."
   },
   "dependencies": {
-    "cookie-parser": "1.4.6",
+    "cookie-parser": "^1.4.7",
     "debug": "4.3.5",
-    "express": "4.20.0",
-    "honeycomb-beeline": "2.7.1",
+    "express": "^4.21.2",
+    "honeycomb-beeline": "^4.2.0",
     "http-errors": "1.8.1",
     "morgan": "1.10.0",
     "pug": "3.0.3"
