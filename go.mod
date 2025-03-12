@@ -3,7 +3,7 @@ module github.com/abtris/ga-badge
 go 1.24.1
 
 require (
-	dagger.io/dagger v0.16.2
+	dagger.io/dagger v0.16.3
 	github.com/urfave/cli/v2 v2.27.6
 )
 
@@ -38,7 +38,6 @@ require (
 	go.opentelemetry.io/otel/sdk/metric v1.35.0 // indirect
 	go.opentelemetry.io/otel/trace v1.35.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.5.0 // indirect
-	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
 	golang.org/x/net v0.37.0 // indirect
 	golang.org/x/sync v0.12.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect
