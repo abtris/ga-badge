@@ -76,7 +76,7 @@ func TestInitWorkflow(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			actualFileName, err := initWorkflow(test.lang, "/tmp/.github/workflows", templates)
-			defer os.RemoveAll("/tmp/.github/workflows")
+			defer func() { _ = os.RemoveAll("/tmp/.github/workflows") }()
 			if err != nil {
 				t.Errorf("Error %v", err)
 			}

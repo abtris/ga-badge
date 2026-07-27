@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"embed"
 	"errors"
 	"fmt"
@@ -9,6 +10,7 @@ import (
 	"log"
 	"net/url"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/urfave/cli/v3"
@@ -65,9 +67,9 @@ func ensureDir(dirName string) error {
 	return nil
 }
 
-func createFile(content []byte, filename string) error {
-	if _, err := os.Stat(".github/workflows/" + filename); os.IsNotExist(err) {
-		err := os.WriteFile(".github/workflows/"+filename, content, os.ModePerm)
+func createFile(content []byte, path string) error {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		err := os.WriteFile(path, content, os.ModePerm)
 		if err != nil {
 			return err
 		}
@@ -85,10 +87,14 @@ func initWorkflow(lang string, actionsDir string, templates []fs.DirEntry) (stri
 	case "go":
 		// "go.yaml"
 		data, _ := files.ReadFile("templates/go.yaml")
-		createFile(data, fileName)
+		if err := createFile(data, filepath.Join(actionsDir, fileName)); err != nil {
+			return "", err
+		}
 	case "node", "node.js":
 		data, _ := files.ReadFile("templates/node.js.yaml")
-		createFile(data, fileName)
+		if err := createFile(data, filepath.Join(actionsDir, fileName)); err != nil {
+			return "", err
+		}
 	}
 	return fileName, nil
 }
@@ -98,8 +104,8 @@ var files embed.FS
 
 func main() {
 	templates, _ := fs.ReadDir(files, "templates")
-	app := cli.NewApp()
-	app.EnableBashCompletion = true
+	app := &cli.Command{}
+	app.EnableShellCompletion = true
 	app.Commands = []*cli.Command{
 		{
 			Name:    "create",
@@ -110,7 +116,7 @@ func main() {
 				&cli.StringFlag{Name: "branch", Aliases: []string{"b"}, Value: "master"},
 				&cli.StringFlag{Name: "label", Aliases: []string{"l"}, Value: "Build Status"},
 			},
-			Action: func(c *cli.Context) error {
+			Action: func(_ context.Context, c *cli.Command) error {
 				url := c.String("url")
 				branch := c.String("branch")
 				label := c.String("label")
@@ -132,7 +138,7 @@ func main() {
 			Flags: []cli.Flag{
 				&cli.StringFlag{Name: "lang", Aliases: []string{"l"}, Value: "node.js", Required: true},
 			},
-			Action: func(c *cli.Context) error {
+			Action: func(_ context.Context, c *cli.Command) error {
 				lang := c.String("lang")
 				fileName, err := initWorkflow(lang, ".github/workflows/", templates)
 				if err != nil {
@@ -146,13 +152,13 @@ func main() {
 			Name:    "version",
 			Aliases: []string{"v"},
 			Usage:   "Print version",
-			Action: func(c *cli.Context) error {
+			Action: func(_ context.Context, _ *cli.Command) error {
 				printVersion()
 				return nil
 			},
 		}}
 
-	err := app.Run(os.Args)
+	err := app.Run(context.Background(), os.Args)
 	if err != nil {
 		log.Fatal(err)
 	}
