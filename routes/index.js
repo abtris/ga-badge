@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  output = getBadge(req.body.gh_url, { title: req.body.title, branch: req.body.branch })
+  const output = getBadge(req.body.gh_url, { title: req.body.title, branch: req.body.branch })
   res.render('index', { title: 'Badge Generator', snippet: output, url: req.body.gh_url, label: req.body.title, branch: req.body.branch });
 });
 
