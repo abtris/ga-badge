@@ -10,6 +10,7 @@ import (
 	"log"
 	"net/url"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/urfave/cli/v3"
@@ -66,9 +67,9 @@ func ensureDir(dirName string) error {
 	return nil
 }
 
-func createFile(content []byte, filename string) error {
-	if _, err := os.Stat(".github/workflows/" + filename); os.IsNotExist(err) {
-		err := os.WriteFile(".github/workflows/"+filename, content, os.ModePerm)
+func createFile(content []byte, path string) error {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		err := os.WriteFile(path, content, os.ModePerm)
 		if err != nil {
 			return err
 		}
@@ -86,10 +87,14 @@ func initWorkflow(lang string, actionsDir string, templates []fs.DirEntry) (stri
 	case "go":
 		// "go.yaml"
 		data, _ := files.ReadFile("templates/go.yaml")
-		createFile(data, fileName)
+		if err := createFile(data, filepath.Join(actionsDir, fileName)); err != nil {
+			return "", err
+		}
 	case "node", "node.js":
 		data, _ := files.ReadFile("templates/node.js.yaml")
-		createFile(data, fileName)
+		if err := createFile(data, filepath.Join(actionsDir, fileName)); err != nil {
+			return "", err
+		}
 	}
 	return fileName, nil
 }
