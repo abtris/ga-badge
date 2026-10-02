@@ -4,7 +4,7 @@ go 1.26.1
 
 require (
 	dagger.io/dagger v0.21.10
-	github.com/urfave/cli/v3 v3.13.0
+	github.com/urfave/cli/v3 v3.14.0
 )
 
 require (
