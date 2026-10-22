@@ -3,7 +3,7 @@ module github.com/abtris/ga-badge
 go 1.26.1
 
 require (
-	dagger.io/dagger v0.21.10
+	dagger.io/dagger v0.21.11
 	github.com/urfave/cli/v3 v3.14.0
 )
 
